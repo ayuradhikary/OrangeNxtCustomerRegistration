@@ -1,7 +1,5 @@
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.Scanner;
 
 
@@ -9,12 +7,13 @@ public class UserRegistrationService {
 
     static Map<String,String> details = new HashMap<String, String>();
 
-    static Scanner ob = new Scanner(System.in);
+    static Scanner inputScanner = new Scanner(System.in);
 
-    static boolean getCustomerMobileNumber(){
+    boolean getCustomerMobileNumber(){
+        UserInputValidator userInputValidator = new UserInputValidator();
         System.out.println("please enter your mobile number: ");
-        String customerMobileNumber = ob.next();
-        if(ValidateUserInput.checkMobileNumber(customerMobileNumber)){
+        String customerMobileNumber = inputScanner.next();
+        if(userInputValidator.checkMobileNumber(customerMobileNumber)){
             details.put("mobileNumber",customerMobileNumber);
             return true;
         }
@@ -23,13 +22,14 @@ public class UserRegistrationService {
         }
     }
 
-    static boolean deviceVerification(){
+    boolean deviceVerification(){
+        UserInputValidator userInputValidator = new UserInputValidator();
         System.out.println("please enter verification code: ");
-        String verificationCode = ob.next();
+        String verificationCode = inputScanner.next();
         System.out.println("please enter the verification code again: ");
-        String verificationCodeTwo = ob.next();
-        if(ValidateUserInput.equals(verificationCode,verificationCodeTwo)){
-            if(ValidateUserInput.checkVerificationCode(verificationCodeTwo)){
+        String verificationCodeTwo = inputScanner.next();
+        if(userInputValidator.equals(verificationCode,verificationCodeTwo)){
+            if(userInputValidator.checkVerificationCode(verificationCodeTwo)){
                 details.put("VerificationCode", verificationCodeTwo);
                 return true;
             }else{
@@ -40,13 +40,14 @@ public class UserRegistrationService {
         }
     }
 
-    static boolean getMpinAndVerify(){
+    boolean getMpinAndVerify(){
+        UserInputValidator userInputValidator = new UserInputValidator();
         System.out.println("please enter the 4 character Mpin");
-        String mpinOne = ob.next();
+        String mpinOne = inputScanner.next();
         System.out.println("please enter the Mpin again: ");
-        String mpinTwo = ob.next();
-        if(ValidateUserInput.equals(mpinOne,mpinTwo)){
-            if(ValidateUserInput.checkMpin(mpinTwo)){
+        String mpinTwo = inputScanner.next();
+        if(userInputValidator.equals(mpinOne,mpinTwo)){
+            if(userInputValidator.checkMpin(mpinTwo)){
                 details.put("MPin", mpinTwo);
                 return true;
             }
@@ -59,18 +60,19 @@ public class UserRegistrationService {
         }
     }
 
-    static boolean continueOrBreak(){
+   boolean continueOrBreak(){
+        UserInputValidator userInputValidator = new UserInputValidator();
         System.out.println("Would you like to register another account?: ");
-        String uResponse = ob.next();
-        if(ValidateUserInput.equalsCaseInSensitive(uResponse,"Y")){
+        String registerAnotherAccountResponse = inputScanner.next();
+        if(userInputValidator.equalsCaseInSensitive(registerAnotherAccountResponse,"Y")){
             return true;
-        }else if(ValidateUserInput.equalsCaseInSensitive(uResponse,"N")){
+        }else if(userInputValidator.equalsCaseInSensitive(registerAnotherAccountResponse,"N")){
             return false;
         }
         return false;
     }
 
-    static void saveCustomerDetails(String country){
+   void saveCustomerDetails(String country){
         FileRegistration obj = new FileRegistration();
         String mobileNumber = details.get("mobileNumber");
         String verificationCode = details.get("VerificationCode");

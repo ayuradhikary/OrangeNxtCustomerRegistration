@@ -2,34 +2,37 @@ import java.util.Scanner;
 
 public class OrangeNxtCustomerRegistration  {
     public static void main(String[] args) {
-        Scanner ob = new Scanner(System.in);
+        Scanner inputScanner = new Scanner(System.in);
         Country.CountryEnum countryNepal = Country.CountryEnum.Nepal;
         String countryNepalString = countryNepal.name();
         Country.CountryEnum countryIndia = Country.CountryEnum.India;
         String countryIndiaString = countryIndia.name();
 
+        UserRegistrationService userRegistrationService = new UserRegistrationService();
+        UserInputValidator userInputValidator = new UserInputValidator();
+
         while(true){
             System.out.println("Would you like to register?(Y/N): ");
-            String response = ob.next();
-            if(ValidateUserInput.equalsCaseInSensitive(response, "Y")){
+            String response = inputScanner.next();
+            if(userInputValidator.equalsCaseInSensitive(response, "Y")){
                 System.out.println("List of countries: ");
                 System.out.println("1. " + countryNepalString + "\n" + "2. " + countryIndiaString);
                 System.out.println("please choose above countries(1/2): ");
-                String countryCode = ob.next();
-                if(ValidateUserInput.equalsCaseInSensitive(countryCode,"1")){
+                String countryCode = inputScanner.next();
+                if(userInputValidator.equalsCaseInSensitive(countryCode,"1")){
 
                     System.out.println("Nepal");
                     String country = "Nepal";
-                    if(UserRegistrationService.getCustomerMobileNumber()){
+                    if(userRegistrationService.getCustomerMobileNumber()){
                         System.out.println("mobile number verified");
                         System.out.println("Verify this device?(Y/N): ");
-                        String userResponse = ob.next();
-                        if(ValidateUserInput.equalsCaseInSensitive(userResponse, "Y")){
-                            if(UserRegistrationService.deviceVerification()){
-                                    if(UserRegistrationService.getMpinAndVerify()){
-                                        UserRegistrationService.saveCustomerDetails(country);
+                        String userMobileNumberVerificationResponse = inputScanner.next();
+                        if(userInputValidator.equalsCaseInSensitive(userMobileNumberVerificationResponse, "Y")){
+                            if(userRegistrationService.deviceVerification()){
+                                    if(userRegistrationService.getMpinAndVerify()){
+                                        userRegistrationService.saveCustomerDetails(country);
                                         System.out.println("Registration successfull");
-                                        if(UserRegistrationService.continueOrBreak()){
+                                        if(userRegistrationService.continueOrBreak()){
                                             continue;
                                         }else{
                                             break;
@@ -50,19 +53,19 @@ public class OrangeNxtCustomerRegistration  {
                         System.out.println("Invalid mobile number");
                         break;
                     }
-                } else if (ValidateUserInput.equalsCaseInSensitive(countryCode,"2")) {
+                } else if (userInputValidator.equalsCaseInSensitive(countryCode,"2")) {
                     System.out.println("India");
                     String country = "India";
-                    if(UserRegistrationService.getCustomerMobileNumber()){
+                    if(userRegistrationService.getCustomerMobileNumber()){
                         System.out.println("mobile number verified");
                         System.out.println("Verify this device?(Y/N): ");
-                        String userResponse = ob.next();
-                        if(ValidateUserInput.equalsCaseInSensitive(userResponse, "Y")){
-                            if(UserRegistrationService.deviceVerification()){
-                                if(UserRegistrationService.getMpinAndVerify()){
-                                    UserRegistrationService.saveCustomerDetails(country);
+                        String userMobileNumberVerificationResponse = inputScanner.next();
+                        if(userInputValidator.equalsCaseInSensitive(userMobileNumberVerificationResponse, "Y")){
+                            if(userRegistrationService.deviceVerification()){
+                                if(userRegistrationService.getMpinAndVerify()){
+                                    userRegistrationService.saveCustomerDetails(country);
                                     System.out.println("Registration successfull");
-                                    if (UserRegistrationService.continueOrBreak()) {
+                                    if (userRegistrationService.continueOrBreak()) {
                                         continue;
                                     }else{
                                         break;
@@ -85,7 +88,7 @@ public class OrangeNxtCustomerRegistration  {
                     }
                 }
 
-            } else if (ValidateUserInput.equalsCaseInSensitive(response, "N")) {
+            } else if (userInputValidator.equalsCaseInSensitive(response, "N")) {
                 System.out.println("closing application .... ");
                 break;
             }else{
