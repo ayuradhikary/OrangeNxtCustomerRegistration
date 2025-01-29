@@ -4,3 +4,9 @@ New Customer from Nepal with mobile number 9848022542 is registered with verific
 New Customer from India with mobile number 9817921051 is registered with verification code 123456 and he/she has set mpin 1234
 New Customer from India with mobile number 9843082675 is registered with verification code 123456 and he/she has set mpin 1234
 New Customer from Nepal with mobile number 9843082675 is registered with verification code 123456 and he/she has set mpin 3456
+New Customer from %sNepal with mobile number 9843082675 is registered with verification code 123456 and he/she has set mpin 1234
+New Customer from %s Nepal with mobile number 9843082675 is registered with verification code 123456 and he/she has set mpin 1234
+New Customer from Nepal with mobile number  9871234567 is registered with verification code  123456 and he/she has set mpin 1234 
+New Customer from Nepal with mobile number  9876543212 is registered with
+verification code  123456 and he/she has set mpin 1234
+
