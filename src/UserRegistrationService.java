@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class UserRegistrationService {
 
-    static Map<String,String> details = new HashMap<String, String>();
+    private Map<String,String> details = new HashMap<String, String>();
 
     static Scanner inputScanner = new Scanner(System.in);
 

@@ -15,10 +15,6 @@ public class FileRegistration implements Registerable{
         details.put("VerificationCode", verificationCode);
         details.put("MPin", mPin);
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(registration_FILE, true))){
-         /*   String message = "New Customer from %s " + details.get("country") +
-                    " with mobile number " + details.get("mobileNumber") +
-                    " is registered with verification code " + details.get("VerificationCode") +
-                    " and he/she has set mpin " + details.get("MPin");*/
 
            String message = """ 
             New Customer from %s with mobile number  %s is registered with 
