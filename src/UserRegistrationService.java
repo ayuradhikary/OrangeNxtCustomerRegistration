@@ -73,10 +73,11 @@ public class UserRegistrationService {
     }
 
    void saveCustomerDetails(String country){
-        FileRegistration obj = new FileRegistration();
         String mobileNumber = details.get("mobileNumber");
         String verificationCode = details.get("VerificationCode");
         String mPin = details.get("MPin");
-        obj.register(country,mobileNumber,verificationCode,mPin);
+        RegistrationDTO registrationObject = new RegistrationDTO(country,mobileNumber,verificationCode,mPin);
+        FileRegistration fileRegistration = new FileRegistration();
+        fileRegistration.register(registrationObject);
     }
 }

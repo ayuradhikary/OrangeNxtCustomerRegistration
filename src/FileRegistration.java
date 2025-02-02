@@ -9,11 +9,12 @@ public class FileRegistration implements Registerable{
     File file = new File(registration_FILE);
 
     @Override
-    public void register(String country, String mobileNumber, String verificationCode, String mPin) {
-        details.put("country",country);
-        details.put("mobileNumber", mobileNumber);
-        details.put("VerificationCode", verificationCode);
-        details.put("MPin", mPin);
+    public void register(RegistrationDTO registrationDTO) {
+        details.put("country",registrationDTO.getCountry());
+        details.put("mobileNumber", registrationDTO.getMobileNumber());
+        details.put("VerificationCode", registrationDTO.getVerificationCode());
+        details.put("MPin", registrationDTO.getMPin());
+
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(registration_FILE, true))){
 
            String message = """ 
